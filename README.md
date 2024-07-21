@@ -26,7 +26,7 @@ In your Workflow file, add the `--write-ghc-environment-files=always` option to 
     package-name: <my-package>
     expected-interface: <the path where you track the canonical interface file>
     ghc: <The GHC version you use in CI>
-    version: 0.1.0.0
+    version: 0.1.0.0 # This is the version of the print-api tool
 ```
 
 If you use a job matrix, the value of the `ghc:` parameter may be `${{ matrix.ghc }}`
