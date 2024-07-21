@@ -21,12 +21,12 @@ In your Workflow file, add the `--write-ghc-environment-files=always` option to 
 
 ```yaml
 - name: Diff the expected and actual package APIs
-  uses: kleidukos/diff-package-api@v0.0.1.3
+  uses: kleidukos/diff-package-api@v0.1.0.1
   with:
     package-name: <my-package>
     expected-interface: <the path where you track the canonical interface file>
     ghc: <The GHC version you use in CI>
-    version: 0.0.1.0 # This is the version of the print-api tool
+    version: 0.1.0.1 # This is the version of the print-api tool
 ```
 
 If you use a job matrix, the value of the `ghc:` parameter may be `${{ matrix.ghc }}`
