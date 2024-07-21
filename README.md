@@ -21,7 +21,7 @@ In your Workflow file, add the `--write-ghc-environment-files=always` option to 
 
 ```yaml
 - name: Diff the expected and actual package APIs
-  uses: kleidukos/diff-package-api@v0.0.1.0
+  uses: kleidukos/diff-package-api@v0.0.1.1
   with:
     package-name: <my-package>
     expected-interface: <the path where you track the canonical interface file>
