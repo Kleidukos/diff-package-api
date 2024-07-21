@@ -18,14 +18,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout base repo
-      uses: actions/checkout@v4
     - name: Set up the binary
       shell: bash
       run: |
         if [[ ${{ inputs.ghc }} =~ ^(9.6.6|9.8.2|9.10.1)$ ]]
         then 
-          wget -q https://github.com/Kleidukos/print-api/releases/download/v0.0.1.0/print-api-0.1.0.0-Linux-static-x86_64.tar.gz
+          wget -q https://github.com/Kleidukos/print-api/releases/download/v${{ inputs.version }}/print-api-${{ inputs.version }}-Linux-static-x86_64.tar.gz
           tar -xzvf print-api-${{ inputs.version}}-Linux-static-x86_64.tar.gz
           chmod +x print-api
           cabal install -j ${{ inputs.package-name }}
