@@ -23,8 +23,9 @@ runs:
       run: |
         if [[ ${{ inputs.ghc }} =~ ^(9.6.6|9.8.2|9.10.1)$ ]]
         then 
-          wget -q https://github.com/Kleidukos/print-api/releases/download/v${{ inputs.version }}/print-api-${{ inputs.version }}-Linux-static-${{ inputs.ghc }}-x86_64.tar.gz
-          tar -xzvf print-api-${{ inputs.version}}-Linux-static-x86_64.tar.gz
+          ARCHIVE=print-api-${{ inputs.version }}-Linux-static-${{ inputs.ghc }}-x86_64.tar.gz
+          wget -q https://github.com/Kleidukos/print-api/releases/download/v${{ inputs.version }}/$ARCHIVE
+          tar -xzvf $ARCHIVE
           chmod +x print-api
           ./print-api --package-name ${{ inputs.package-name }} > actual-interface.txt
           diff ${{ inputs.expected-interface }} actual-interface.txt
