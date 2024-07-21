@@ -2,7 +2,7 @@
 
 ## Usage
 
-Install the [print-api](https://github.com/Kleidukos/print-api) in your development environment and build your project with GHC environment files enabled:
+Install the appropriate version of [print-api](https://github.com/Kleidukos/print-api) in your development environment and build your project with GHC environment files enabled:
 
 ```bash
 $ cabal build --write-ghc-environment-files=always
