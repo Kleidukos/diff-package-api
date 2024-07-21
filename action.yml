@@ -26,8 +26,7 @@ runs:
           wget -q https://github.com/Kleidukos/print-api/releases/download/v${{ inputs.version }}/print-api-${{ inputs.version }}-Linux-static-x86_64.tar.gz
           tar -xzvf print-api-${{ inputs.version}}-Linux-static-x86_64.tar.gz
           chmod +x print-api
-          cabal install -j ${{ inputs.package-name }}
-          ./print-api --package-name ${{ inputs.package-name }} --package-db=${{ inputs.package-database }} > actual-interface.txt
+          ./print-api --package-name ${{ inputs.package-name }} > actual-interface.txt
           diff ${{ inputs.expected-interface }} actual-interface.txt
         else
           echo "GHC version not supported, not running."
