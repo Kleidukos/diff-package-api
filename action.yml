@@ -14,6 +14,9 @@ inputs:
   version:
     description: "Version of the tool"
     required: true
+  public-modules:
+    description: "Retain modules with the `Visibility` attribute in their Haddock documentation set to `Public`"
+    required: true
 
 runs:
   using: "composite"
@@ -21,13 +24,14 @@ runs:
     - name: Set up the binary
       shell: bash
       run: |
-        if [[ ${{ inputs.ghc }} =~ ^(9.6.6|9.8.2|9.10.1)$ ]]
+        if [[ ${{ inputs.ghc }} =~ ^(9.6.6|9.8.4|9.10.1)$ ]]
         then 
           ARCHIVE=print-api-${{ inputs.version }}-Linux-static-${{ inputs.ghc }}-x86_64.tar.gz
           wget -q https://github.com/Kleidukos/print-api/releases/download/v${{ inputs.version }}/$ARCHIVE
           tar -xzvf $ARCHIVE
           chmod +x print-api
-          ./print-api --package-name ${{ inputs.package-name }} > actual-interface.txt
+          [[ ${{ inputs.public-modules }} == "true" ]] && publicOnly="--public-only" || publicOnly=""
+          ./print-api ${publicOnly} --package-name ${{ inputs.package-name }} > actual-interface.txt
           diff ${{ inputs.expected-interface }} actual-interface.txt
         else
           echo "GHC version not supported, not running."
